@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Educatcion_API.Models
 {
@@ -11,10 +8,12 @@ namespace Educatcion_API.Models
         public int CourseNumber { get; set; }
         public string? Title { get; set; }
         public string? Length { get; set; }
-        public string? Category { get; set; }
+        public int CategoryId { get; set; }
         public string? Description { get; set; }
         public string? Details { get; set; }
 
+        [ForeignKey("CategoryId")]
+         public Category Category { get; set; } = new Category();
     }
 }
 
