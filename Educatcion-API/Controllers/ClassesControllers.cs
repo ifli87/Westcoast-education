@@ -18,26 +18,17 @@ namespace Educatcion_API.Controllers
         }
 
         [HttpPost()]
-        public async Task <ActionResult> AddClass(ClassesViewModel model)
+        public async Task <ActionResult> AddClassAsync(PostClassesViewModel model)
         {
-           try
-           {
-               if (await _classRepo.GetClassesByCategoryAsync(model.))
-               {
-                   
-               }
-            await _classRepo.AddClassesAsync(model);
-            if (await _classRepo.SaveAllAsync())
-            {   
-                return StatusCode(201);
-            }
-            return StatusCode(500, "Det gick inte att spara kursen"):
-           }
-           catch (System.Exception)
-           {
-               
-               throw;
-           }
+            var classToAdd = new Classes
+            {
+                CourseNumber = model.CourseNumber, 
+                Title = model.Title,
+                Length = model.Length,
+                
+             
+            };
+         
         }
 
         [HttpGet()]
