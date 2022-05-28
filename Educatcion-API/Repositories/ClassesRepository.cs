@@ -59,11 +59,8 @@ namespace Educatcion_API.Repositories
                        Description = classes.Description,
                        Details = classes.Details
                    });
-                  
                 }
-
-                   return (classesList);
-                  
+                   return (classesList);   
         }
 
         public Task<bool> SaveAllAsync()
