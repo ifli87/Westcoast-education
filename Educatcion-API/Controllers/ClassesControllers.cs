@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace Educatcion_API.Controllers
 {
     [ApiController]
-    [Route("api/v1/")]
+    [Route("api/v1/classes")]
     public class ClassesController : ControllerBase
     {
         private readonly IClassesRepository _classRepo;
+
         
         public ClassesController (IClassesRepository classRepo)
         {
@@ -20,21 +21,15 @@ namespace Educatcion_API.Controllers
         [HttpPost()]
         public async Task <ActionResult> AddClassAsync(PostClassesViewModel model)
         {
-            var classToAdd = new Classes
-            {
-                CourseNumber = model.CourseNumber, 
-                Title = model.Title,
-                Length = model.Length,
-                
-             
-            };
-         
+            
+         return StatusCode(201, model);
         }
 
         [HttpGet()]
-        public async Task <ActionResult> GetAllClasses(Classes classes)
+        public async Task <ActionResult<List<ClassesViewModel>>> GetAllClasses()
         {
-            return Ok();
+            
+             return Ok (await _classRepo.ListAllClassesAsync());
         }
         [HttpGet("{id}")]
         public async Task <ActionResult> GetClassById(Classes classes)

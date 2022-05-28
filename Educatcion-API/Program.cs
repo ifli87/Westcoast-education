@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ClassesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"))
 );
 builder.Services.AddScoped<IClassesRepository, ClassesRepository>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

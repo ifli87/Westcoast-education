@@ -1,4 +1,5 @@
 
+using Educatcion_API.Models;
 using Educatcion_API.ViewModels;
 
 namespace Educatcion_API.Interfaces
