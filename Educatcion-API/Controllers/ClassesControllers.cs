@@ -21,8 +21,16 @@ namespace Educatcion_API.Controllers
         [HttpPost()]
         public async Task <ActionResult> AddClassAsync(PostClassesViewModel model)
         {
-            
+            await _classRepo.AddClassesAsync(model);
+           if (await _classRepo.SaveAllAsync() )
+           {
+               
          return StatusCode(201, model);
+           } 
+           else
+           {
+               return StatusCode(500, "något gick fel");
+           }
         }
 
         [HttpGet()]

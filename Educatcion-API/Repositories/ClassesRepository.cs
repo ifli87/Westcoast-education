@@ -16,12 +16,12 @@ namespace Educatcion_API.Repositories
 
         public async Task AddClassesAsync(PostClassesViewModel model)
         {
-           var categoryCourse = await _context.Categorys.Include(c => c.Classes).Where(c => c.CategoryName!.ToLower() == model.Category!.ToLower()).SingleOrDefaultAsync();
+        //    var categoryCourse = await _context.Categorys.Include(c => c.Classes).Where(c => c.CategoryName!.ToLower() == model.Category!.ToLower()).SingleOrDefaultAsync();
            
-           if (categoryCourse is null)
-           {
-               throw new Exception($"Vi har tyvär inte denna kurs {model.Category} i systemet");
-           }
+        //    if (categoryCourse is null)
+        //    {
+        //        throw new Exception($"Vi har tyvär inte denna kurs {model.Category} i systemet");
+        //    }
            var classToAdd = new Classes
             {
                 CourseNumber = model.CourseNumber, 
@@ -30,8 +30,8 @@ namespace Educatcion_API.Repositories
                 Details = model.Details,
                 Description = model.Description
             };
-            classToAdd.Category = categoryCourse;
-            await _context.AddAsync(classToAdd);
+            // classToAdd.Category = categoryCourse;
+            await _context.Classes.AddAsync(classToAdd);
         }
 
         public async Task<List<ClassesViewModel>> GetClassesByCategoryAsync(string category)
@@ -48,7 +48,7 @@ namespace Educatcion_API.Repositories
         {
             var response = await _context.Classes.ToListAsync();
            var classesList = new List<ClassesViewModel>();
-           foreach (var classes in classesList)
+           foreach (var classes in response) // class
            {
                classesList.Add(
                    new ClassesViewModel
@@ -63,9 +63,9 @@ namespace Educatcion_API.Repositories
                    return (classesList);   
         }
 
-        public Task<bool> SaveAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
-            throw new NotImplementedException();
+           return await _context.SaveChangesAsync() > 0;
         }
 
         public Task UppdateClassesAsync(int id, PostClassesViewModel model)

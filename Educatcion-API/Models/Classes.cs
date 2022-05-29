@@ -8,12 +8,12 @@ namespace Educatcion_API.Models
         public int CourseNumber { get; set; }
         public string? Title { get; set; }
         public string? Length { get; set; }
-        public int CategoryId { get; set; }
+        public string? Category { get; set; }
         public string? Description { get; set; }
         public string? Details { get; set; }
 
-        [ForeignKey("CategoryId")]
-         public Category Category { get; set; } = new Category();
+        // [ForeignKey("CategoryId")]
+        //  public Category Category { get; set; } = new Category();
     }
 }
 
