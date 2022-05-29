@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Educatcion_API.Data;
 using Educatcion_API.Interfaces;
+using Educatcion_API.Models;
 using Educatcion_API.ViewModels.Categorys;
+using Microsoft.EntityFrameworkCore;
 
 namespace Educatcion_API.Repositories
 {
@@ -16,9 +18,15 @@ namespace Educatcion_API.Repositories
             _context = context;
         }
 
-        public Task AddCategoryAsync(PostCategoryViewModel model)
+        public async Task AddCategoryAsync(PostCategoryViewModel model)
         {
-            throw new NotImplementedException();
+        
+           var category = new Category
+           {
+               CategoryName = model.CategoryName
+           };
+          await _context.Categorys.AddAsync(category);
+     
         }
 
         public Task<CategoryViewModel> GetCategoryById(int id)
@@ -26,9 +34,20 @@ namespace Educatcion_API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<CategoryViewModel>> ListCategoryAsync()
+        public async Task <List<CategoryViewModel>> ListCategoryAsync()
         {
-            throw new NotImplementedException();
+           var response = await _context.Categorys.ToListAsync();
+           var categoryList = new List<CategoryViewModel>();
+           foreach (var Category in response)
+           {
+           categoryList.Add(
+                new CategoryViewModel
+                {
+               Id = Category.Id,
+               CategoryName = Category.CategoryName 
+           });
+           }
+           return(categoryList);
         }
 
         public Task<List<CategoryWithClassesViewModel>> ListCategorysClasses()
@@ -41,9 +60,9 @@ namespace Educatcion_API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> SaveAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
-            throw new NotImplementedException();
+             return await _context.SaveChangesAsync() > 0;
         }
 
         public Task UpdateCategory(int id, PutCategoryViewModel model)

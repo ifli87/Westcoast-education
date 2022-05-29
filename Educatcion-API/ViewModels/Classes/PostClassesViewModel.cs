@@ -11,7 +11,7 @@ namespace Educatcion_API.ViewModels
         [Required]
         public string? Length { get; set; }
         [Required]
-        public string? Category { get; set; }
+        public string? CategoryName { get; set; }
         [Required]
         public string? Description { get; set; }
         [Required]

@@ -16,5 +16,8 @@ namespace Educatcion_API.ViewModels
         public string? Description { get; set; }
         [Required]
         public string? Details { get; set; }
+
+
+        
     }
 }

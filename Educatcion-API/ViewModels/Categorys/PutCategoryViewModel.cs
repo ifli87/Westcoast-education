@@ -9,6 +9,6 @@ namespace Educatcion_API.ViewModels.Categorys
     public class PutCategoryViewModel
     {
         [Required]
-        public string? Name { get; set; }
+        public string? CategoryName { get; set; }
     }
 }

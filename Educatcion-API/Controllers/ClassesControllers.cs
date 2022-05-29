@@ -39,25 +39,46 @@ namespace Educatcion_API.Controllers
             
              return Ok (await _classRepo.ListAllClassesAsync());
         }
+
+       
+
+        [HttpPut("{id}")]
+        public async Task <ActionResult> UpdateClasses(int id, PutClassesViewModel model)
+        {
+            try
+            {
+                await _classRepo.UppdateClassesAsync(id, model);
+
+                if (await _classRepo.SaveAllAsync())
+                {
+                    return NoContent();
+                }
+                return StatusCode(500, "Ett fel inträffade när kursen skulle uppdateras");
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode (500, ex.Message);
+            }
+        }
+
+
         [HttpGet("{id}")]
-        public async Task <ActionResult> GetClassById(Classes classes)
+        public async Task <ActionResult> GetClassById(int id)
         {
-            return Ok();
+            var response = await _classRepo.GetClassesAsync(id);
+            if (response is null)
+            {
+                return NotFound($"Det finns ingen kurs med id: {id} ");
+            }
+            return Ok(response);
         }
 
-        [HttpDelete()]
-        public async Task <ActionResult> DeleteClass(Classes classes)
-        {
-            return Ok();
-        }
-
-        [HttpPut()]
-        public async Task <ActionResult> UpdateClasses(Classes classes)
-        {
-            return NoContent();
-        }
-
-
+        // [HttpGet("{id}")]
+        // public async Task <ActionResult> GetClassesByCategoryAsync([FromQuery] string category)
+        // {
+        //    return Ok(await _classRepo.GetClassesByCategoryAsync(category));
+        // }
 
     }
 }

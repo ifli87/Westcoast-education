@@ -2,18 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Educatcion_API.Interfaces;
+using Educatcion_API.ViewModels.Categorys;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Educatcion_API.Controllers
 {
     [ApiController]
-    [Route("api/v1/Category")]
+    [Route("api/v1/category")]
     public class CategoryController : ControllerBase
     {
+        private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository categoryRepo )
+        {
+            _categoryRepo = categoryRepo;
+
+        }
+
         [HttpGet]
         public async Task<ActionResult> ListAll ()
         {
-            return Ok();
+            var list = await _categoryRepo.ListCategoryAsync();
+            return Ok(list);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult> ListById ()
@@ -21,9 +31,14 @@ namespace Educatcion_API.Controllers
             return Ok();
         }
         [HttpPost]
-        public async Task<ActionResult> CreateCategory ()
+        public async Task<ActionResult> AddCategory (PostCategoryViewModel model)
         {
+            await _categoryRepo.AddCategoryAsync(model);
+            if (await _categoryRepo.SaveAllAsync())
+            {   
             return StatusCode(201);
+            }
+            return StatusCode (500, " ops något gick fel vid sparande av category");
         }
         [HttpPut("{id}")]
         public async Task<ActionResult> UppdateCategory ()
