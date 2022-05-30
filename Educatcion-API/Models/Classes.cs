@@ -8,18 +8,21 @@ namespace Educatcion_API.Models
         public int CourseNumber { get; set; }
         public string? Title { get; set; }
         public string? Length { get; set; }
-        public int CategoryId { get; set; }
+        public int CategoryNameId { get; set; }
         public string? Description { get; set; }
         public string? Details { get; set; }
+        public int StudentId { get; set; }
+        public int TeacherId { get; set; }
 
         [ForeignKey("CategoryId")]
          public Category Category { get; set; } = new Category();
+         
+         [ForeignKey("StudentId")]
+         public ICollection<Student> Student { get; set; } = new List<Student>();
+
+         [ForeignKey("TeacherId")]
+          public ICollection<Teacher> Teacher { get; set; } = new List<Teacher>();
+
     }
 }
 
-// Kursnummer (Idag använder kunden 4 siffror för detta t ex 1179)
-// Kurs title
-// Längd (t ex 3 dagar, 40 timmar video)
-// Kategori( t ex JavaScript, .NET, Java, Python)
-// Beskrivning (är en kortare övergripande beskrivning om kursen och varför man ska gå den)
-// Detaljer (här finns information om vilka moduler/delar kursen går igenom)

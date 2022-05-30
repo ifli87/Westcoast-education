@@ -21,24 +21,32 @@ namespace Educatcion_API.Repositories
            (c => c.CategoryName!
            .ToLower() == model.CategoryName!.ToLower()).SingleOrDefaultAsync();
             
-            
+           var classToAdd = new Classes();
+           
             if (categoryCourse is null)
+            {   
+                var newCategoy = new Category
+                {
+                    CategoryName = model.CategoryName
+                };
+              await _context.Categorys.AddAsync(newCategoy); // om categoryn inte finns skapar vi den
+              await _context.SaveChangesAsync();
+              
+            }
+            else
             {
-              await _context.Categorys.AddAsync(categoryCourse!); // om categoryn inte finns skapar vi den
-
+                classToAdd.Category = categoryCourse;
             }
         
-           var classToAdd = new Classes
-            {
-                CourseNumber = model.CourseNumber, 
-                Title = model.Title,
-                Length = model.Length,
-                // Category = model.CategoryName,
-                Details = model.Details,
-                Description = model.Description
-            };
-            classToAdd.Category = categoryCourse!; // rätt att ange att den inte är null?
+                classToAdd.CourseNumber = model.CourseNumber; 
+                classToAdd.Title = model.Title;
+                classToAdd.Length = model.Length;
+                classToAdd.Details = model.Details;
+                classToAdd.Description = model.Description;
+    
             await _context.Classes.AddAsync(classToAdd);
+           
+            // classToAdd.Category = categoryCourse; // rätt att ange att den inte är null?
         }
 
         public async Task<List<ClassesViewModel>> GetClassesByCategoryAsync(string category)

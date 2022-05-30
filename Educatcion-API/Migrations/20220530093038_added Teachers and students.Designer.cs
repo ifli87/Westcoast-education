@@ -2,6 +2,7 @@
 using Educatcion_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,39 +10,40 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Educatcion_API.Migrations
 {
     [DbContext(typeof(ClassesContext))]
-    partial class ClassesContextModelSnapshot : ModelSnapshot
+    [Migration("20220530093038_added Teachers and students")]
+    partial class addedTeachersandstudents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
             modelBuilder.Entity("ClassesStudent", b =>
                 {
-                    b.Property<int>("ClassesId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("StudentId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ClassesId", "StudentId");
+                    b.Property<int>("StudentId1")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("StudentId");
+                    b.HasKey("StudentId", "StudentId1");
+
+                    b.HasIndex("StudentId1");
 
                     b.ToTable("ClassesStudent");
                 });
 
             modelBuilder.Entity("ClassesTeacher", b =>
                 {
-                    b.Property<int>("ClassesId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("TeacherId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ClassesId", "TeacherId");
+                    b.Property<int>("TeacherId1")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("TeacherId");
+                    b.HasKey("TeacherId", "TeacherId1");
+
+                    b.HasIndex("TeacherId1");
 
                     b.ToTable("ClassesTeacher");
                 });
@@ -112,9 +114,6 @@ namespace Educatcion_API.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ClassesId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -147,9 +146,6 @@ namespace Educatcion_API.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ClassesId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -172,30 +168,30 @@ namespace Educatcion_API.Migrations
 
             modelBuilder.Entity("ClassesStudent", b =>
                 {
-                    b.HasOne("Educatcion_API.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("ClassesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Educatcion_API.Models.Classes", null)
                         .WithMany()
                         .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Educatcion_API.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("ClassesTeacher", b =>
                 {
-                    b.HasOne("Educatcion_API.Models.Teacher", null)
-                        .WithMany()
-                        .HasForeignKey("ClassesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Educatcion_API.Models.Classes", null)
                         .WithMany()
                         .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Educatcion_API.Models.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("TeacherId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Educatcion_API.Interfaces;
 using Educatcion_API.ViewModels.Categorys;
 using Microsoft.AspNetCore.Mvc;
