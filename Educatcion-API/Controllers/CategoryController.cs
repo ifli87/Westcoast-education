@@ -36,11 +36,7 @@ namespace Educatcion_API.Controllers
             }
             return StatusCode (500, " ops något gick fel vid sparande av category");
         }
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UppdateCategory ()
-        {
-            return NoContent();
-        }
+       
         
     }
 }

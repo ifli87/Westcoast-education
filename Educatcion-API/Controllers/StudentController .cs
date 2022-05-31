@@ -34,19 +34,34 @@ namespace Educatcion_API.Controllers
            return Ok (await _studentRepo.ListAllStudentsAsync());
         }
         [HttpPut()]
-        public async Task <ActionResult> UppdateStudent ()
+        public async Task <ActionResult> UppdateStudent (int id, PutStudentViewModel model)
         {
-            return Ok();
+          try
+            {
+                await _studentRepo.UppdateStudentAsync(id, model);
+
+                if (await _studentRepo.SaveAllAsync())
+                {
+                    return NoContent();
+                }
+                return StatusCode(500, "Ett fel inträffade när kursen skulle uppdateras");
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode (500, ex.Message);
+            }
         }
         [HttpGet("{id}")]
         public async Task <ActionResult> GetStudentById (int id)
         {
-            return Ok();
+            var response = await _studentRepo.GetStudentById(id);
+            if (response is null)
+            {
+                return NotFound($"Det finns ingen Student med id: {id} ");
+            }
+            return Ok(response);
         }
-        [HttpDelete()]
-        public async Task <ActionResult> DeleteStudent (int id)
-        {
-            return Ok();
-        }
+       
     }
 }

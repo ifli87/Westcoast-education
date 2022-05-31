@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Educatcion_API.Migrations
 {
     [DbContext(typeof(ClassesContext))]
-    [Migration("20220530093453_added Teachers and students with foreign keys ")]
-    partial class addedTeachersandstudentswithforeignkeys
+    [Migration("20220531131245_new 2123")]
+    partial class new2123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

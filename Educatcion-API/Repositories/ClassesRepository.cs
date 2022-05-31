@@ -29,6 +29,7 @@ namespace Educatcion_API.Repositories
                 {
                     CategoryName = model.CategoryName
                 };
+                
               await _context.Categorys.AddAsync(newCategoy); // om categoryn inte finns skapar vi den
               await _context.SaveChangesAsync();
               
@@ -52,7 +53,7 @@ namespace Educatcion_API.Repositories
         public async Task<List<ClassesViewModel>> GetClassesByCategoryAsync(string category)
         {
 
-               //   return await _context.Classes.Where(c => c.Category == category)
+        //          return await _context.Classes.Where(c => c.Category == category)
         //  .Select(classes => new ClassesViewModel
         //  {
         //      Id = classes.Id,

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Educatcion_API.Data;
 using Educatcion_API.Interfaces;
 using Educatcion_API.Models;
@@ -30,8 +26,11 @@ namespace Educatcion_API.Repositories
                 City = model.City,
                 ZipCode = model.ZipCode  
             };
-            await _context.Students.AddAsync(newStudent);
+            await _context.AddAsync(newStudent);
+          
         }
+
+       
 
         public async Task<List<StudentViewModel>> ListAllStudentsAsync()
         {
@@ -53,20 +52,47 @@ namespace Educatcion_API.Repositories
          }
                  return (studetList);
         }
-        public Task<StudentViewModel?> GetStudentById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
+        public async Task UppdateStudentAsync(int id, PutStudentViewModel model)
+        {
+           var student = await _context.Students.FindAsync(id);
+            if (student is null)
+            {
+                throw new Exception($"Vi kunde inte hitta någon student med detta id{id}");
+            }
+
+            student.FirstName = model.FirstName;
+            student.LastName = model.LastName;
+            student.Email = model.Email;
+            student.Telephone = model.Telephone;
+            student.Adress = model.Adress;
+            student.City = model.City;
+            student.ZipCode = model.ZipCode;
+
+            _context.Students.Update(student);
+            
+        }
+        public async Task<StudentViewModel?> GetStudentById(int id)
+        {
+           return await _context.Students.Where(c => c.Id == id)
+         .Select(student => new StudentViewModel
+         {
+            Id = student.Id,
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            Email = student.Email,
+            Telephone = student.Telephone,
+            Adress = student.Adress,
+            City = student.City,
+            ZipCode = student.ZipCode
+         }).SingleOrDefaultAsync();
+        }
+        
 
         public async Task<bool> SaveAllAsync()
         {
            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task UppdateStudentAsync(int id, PutStudentViewModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

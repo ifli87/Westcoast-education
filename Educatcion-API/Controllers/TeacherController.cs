@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Educatcion_API.Interfaces;
+using Educatcion_API.ViewModels.Teacher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Educatcion_API.Controllers
@@ -10,15 +12,27 @@ namespace Educatcion_API.Controllers
     [Route("api/v1/teacher")]
     public class TeacherController : ControllerBase
     {
-          [HttpPost()]
-        public async Task <ActionResult> AddTeacher ()
+        private readonly ITeacherRepository _teacherrepo;
+        public TeacherController(ITeacherRepository teacherrepo)
         {
-            return Ok();
+            _teacherrepo = teacherrepo;
+        }
+
+        [HttpPost()]
+        public async Task <ActionResult> AddTeacher (PostTeacherViewModel model)
+        {
+           
+             await _teacherrepo.AddTeacherAsync(model);
+            if (await _teacherrepo.SaveAllAsync())
+            {   
+            return StatusCode(201);
+            }
+            return StatusCode (500, " ops något gick fel vid sparande av studenten");
         }
         [HttpGet()]
         public async Task <ActionResult> ListAllTeacher ()
         {
-            return Ok();
+             return Ok (await _teacherrepo.ListAllTeachersAsync());
         }
         [HttpPut()]
         public async Task <ActionResult> UppdateTeacher ()

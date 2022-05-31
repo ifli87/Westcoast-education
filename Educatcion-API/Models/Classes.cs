@@ -18,10 +18,10 @@ namespace Educatcion_API.Models
          public Category Category { get; set; } = new Category();
          
          [ForeignKey("StudentId")]
-         public ICollection<Student> Student { get; set; } = new List<Student>();
+         public ICollection<Student> Students { get; set; } = new List<Student>();
 
          [ForeignKey("TeacherId")]
-          public ICollection<Teacher> Teacher { get; set; } = new List<Teacher>();
+          public ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
 
     }
 }
