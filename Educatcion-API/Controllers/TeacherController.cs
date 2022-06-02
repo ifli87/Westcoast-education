@@ -34,16 +34,16 @@ namespace Educatcion_API.Controllers
         {
              return Ok (await _teacherrepo.ListAllTeachersAsync());
         }
-        [HttpPut()]
-        public async Task <ActionResult> UppdateTeacher ()
-        {
-            return Ok();
-        }
-        [HttpGet("{id}")]
-        public async Task <ActionResult> GetTeacherById (int id)
-        {
-            return Ok();
-        }
+        // [HttpPut()]
+        // public async Task <ActionResult> UppdateTeacher ()
+        // {
+        //     return Ok();
+        // }
+        // [HttpGet("{id}")]
+        // public async Task <ActionResult> GetTeacherById (int id)
+        // {
+        //     return Ok();
+        // }
        
     }
 }

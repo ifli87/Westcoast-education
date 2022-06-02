@@ -48,8 +48,8 @@ namespace Educatcion_API.Repositories
             // classToAdd.Category = categoryCourse; // rätt att ange att den inte är null?
         }
 
-        public async Task<List<ClassesViewModel>> GetClassesByCategoryAsync(string category)
-        {
+        // public async Task<List<ClassesViewModel>> GetClassesByCategoryAsync(string category)
+        // {
 
         //          return await _context.Classes.Where(c => c.Category == category)
         //  .Select(classes => new ClassesViewModel
@@ -61,8 +61,8 @@ namespace Educatcion_API.Repositories
         //      Description = classes.Description,
         //      Details = classes.Details
         //  }).SingleOrDefaultAsync();
-            throw new NotImplementedException();
-        }
+        //     throw new NotImplementedException();
+        // }
 
         public async Task<ClassesViewModel?> GetClassesAsync(int id)
         {

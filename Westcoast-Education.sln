@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Educatcion-API", "Educatcion-API\Educatcion-API.csproj", "{12CBE7A8-1DDF-47FC-9408-93CCF2E73209}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{723EB13D-DEB7-4330-A92B-7BB883D80D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skolplattform", "Clients\skolplattform\skolplattform.csproj", "{3E19E714-EF22-47A4-A185-5750066C3540}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{12CBE7A8-1DDF-47FC-9408-93CCF2E73209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12CBE7A8-1DDF-47FC-9408-93CCF2E73209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12CBE7A8-1DDF-47FC-9408-93CCF2E73209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E19E714-EF22-47A4-A185-5750066C3540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E19E714-EF22-47A4-A185-5750066C3540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E19E714-EF22-47A4-A185-5750066C3540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E19E714-EF22-47A4-A185-5750066C3540}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E19E714-EF22-47A4-A185-5750066C3540} = {723EB13D-DEB7-4330-A92B-7BB883D80D6B}
 	EndGlobalSection
 EndGlobal
