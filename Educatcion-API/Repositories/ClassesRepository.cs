@@ -16,35 +16,33 @@ namespace Educatcion_API.Repositories
 
         public async Task AddClassesAsync(PostClassesViewModel model)
         {
-           var categoryCourse = await _context.Categorys.Include
+           var category = await _context.Categorys.Include
            (c => c.Classes).Where
            (c => c.CategoryName!
            .ToLower() == model.CategoryName!.ToLower()).SingleOrDefaultAsync();
             
            var classToAdd = new Classes();
            
-            if (categoryCourse is null)
+            if (category is null)
             {   
-                var newCategoy = new Category
-                {
-                    CategoryName = model.CategoryName
-                };
-                
-              await _context.Categorys.AddAsync(newCategoy); // om categoryn inte finns skapar vi den
-              await _context.SaveChangesAsync();
-              
+                Category newCategory = new Category ();
+                newCategory.CategoryName = model.CategoryName;
+                await _context.Categorys.AddAsync(newCategory); // om categoryn inte finns skapar vi den
+                await _context.SaveChangesAsync();
+                classToAdd.Category = newCategory;
             }
             else
             {
-                classToAdd.Category = categoryCourse;
+                classToAdd.Category = category;
             }
-        
+            //    classToAdd.Category = model.CategoryName;
                 classToAdd.CourseNumber = model.CourseNumber; 
                 classToAdd.Title = model.Title;
                 classToAdd.Length = model.Length;
                 classToAdd.Details = model.Details;
                 classToAdd.Description = model.Description;
-    
+
+                classToAdd.Category = category!; // denna blir null referens annars !!!! 
             await _context.Classes.AddAsync(classToAdd);
            
             // classToAdd.Category = categoryCourse; // rätt att ange att den inte är null?
@@ -68,6 +66,7 @@ namespace Educatcion_API.Repositories
 
         public async Task<ClassesViewModel?> GetClassesAsync(int id)
         {
+
          return await _context.Classes.Where(c => c.Id == id)
          .Select(classes => new ClassesViewModel
          {
@@ -82,6 +81,7 @@ namespace Educatcion_API.Repositories
 
         public async Task <List<ClassesViewModel>> ListAllClassesAsync()
         {
+
            var response = await _context.Classes.ToListAsync();
            var classesList = new List<ClassesViewModel>();
            foreach (var Class in response) 

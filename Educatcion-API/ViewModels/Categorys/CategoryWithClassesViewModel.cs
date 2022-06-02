@@ -4,6 +4,6 @@ namespace Educatcion_API.ViewModels.Categorys
     {
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
-        public List<PostClassesViewModel> Classes { get; set; } = new List<PostClassesViewModel>();
+        public List<ClassesViewModel> Classes { get; set; } = new List<ClassesViewModel>();
     }
 }

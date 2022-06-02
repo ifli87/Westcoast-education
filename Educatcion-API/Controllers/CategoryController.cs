@@ -22,9 +22,9 @@ namespace Educatcion_API.Controllers
             return Ok(list);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult> ListById ()
+        public async Task<ActionResult> ListById (int id)
         {
-            return Ok();
+            return Ok(await _categoryRepo.GetCategoryById(id));
         }
         [HttpPost]
         public async Task<ActionResult> AddCategory (PostCategoryViewModel model)
@@ -37,6 +37,10 @@ namespace Educatcion_API.Controllers
             return StatusCode (500, " ops något gick fel vid sparande av category");
         }
        
-        
+        [HttpGet("courses")]
+        public async Task<ActionResult> ListCategorysWithClasses ()
+        {
+          return Ok (await _categoryRepo.ListCategorysClasses());
+        }
     }
 }
