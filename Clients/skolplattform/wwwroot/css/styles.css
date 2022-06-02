@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cambay', sans-serif;
+}
+
+main {
+    padding: 500rem 300rem;
+    background-color: aqua;
+}
