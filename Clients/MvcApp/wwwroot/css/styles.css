@@ -14,3 +14,6 @@ main {
 h2 {
     padding: 0 0 1.1rem 0;;
 }
+p {
+    color: red;
+}

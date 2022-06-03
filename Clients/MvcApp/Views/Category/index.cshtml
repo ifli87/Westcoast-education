@@ -1,9 +1,20 @@
+
+@model IEnumerable<MvcApp.ViewModels.CategoryWithClassViewModel>
 @{
-    ViewData["Title"] = "Våra kurser";
+    ViewData["Title"] = "Kurser";
 }
 
 <h1>@ViewData["Title"]</h1>
-
 <section>
-    <p>Här är våra bilar</p>
+    @foreach (var category in Model)
+    {
+        <div>
+            <a asp-controller="Classes" asp-action="Details"/>
+           <p>
+               @category.CategoryName
+
+            </p> 
+        </div>
+         
+     }
 </section>

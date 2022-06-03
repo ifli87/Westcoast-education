@@ -1,0 +1,21 @@
+@model IEnumerable<MvcApp.ViewModels.ClassesViewModel>
+@{
+    ViewData["Title"] = "Våra kurser";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<section>
+    @foreach (var classes in Model)
+    {
+        <div>
+            
+            <p>
+            @classes.CourseNumber
+            @classes.Title
+            @classes.Length
+            Här kommer snart info om kurserna 
+            </p> 
+        </div>
+    }
+</section>

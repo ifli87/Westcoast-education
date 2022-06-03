@@ -1,41 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using MvcApp.Models;
+using MvcApp.ViewModels;
 
 namespace MvcApp.Controllers
 {
     [Route("[controller]")]
     public class ClassesController : Controller
     {
-        private readonly ILogger<ClassesController> _logger;
-
-        public classesController(ILogger<ClassesController> logger)
+        private readonly IConfiguration _config;
+        public ClassesController(IConfiguration config)
         {
-            _logger = logger;
+            _config = config;
         }
 
-        public async Task <IActionResult> Index()
-        {   
-            var options = new JsonSerializeOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            var url = "https://localhost:7090/api/v1/classes/courses";
-            using var http = new HttpClient(url);
-            var response = await http.GetAsync("");
-
-            if (!response.ISsuccessStatusCode){
-                console.writeline("ops");
-            }
-           var result = await response.Content.ReadAsStringAsync(options);
-           var classes = JsonSerializer.Deserialize<List<ClassesViewModel>>(result);
-            return View();
+  
+   [HttpGet()]
+        public async Task <IActionResult> Details ()
+        {
+       try
+       {
+           var classesService = new ClassesServiceModel(_config);
+           var classes = await classesService.ListAllClasses();
+            return View(classes);
+       }
+       catch (System.Exception)
+       {
+           
+           throw;
+       }
         }
-
     
     }
 }

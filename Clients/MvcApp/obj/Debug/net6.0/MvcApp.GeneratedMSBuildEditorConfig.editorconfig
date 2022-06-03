@@ -15,8 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\emil_\source\repos\bilar\Westcoast-education\Clients\MvcApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/emil_/source/repos/bilar/Westcoast-education/Clients/MvcApp/Views/Category/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcaW5kZXguY3NodG1s
+[C:/Users/emil_/source/repos/bilar/Westcoast-education/Clients/MvcApp/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emil_/source/repos/bilar/Westcoast-education/Clients/MvcApp/Views/Classes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc3Nlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/emil_/source/repos/bilar/Westcoast-education/Clients/MvcApp/Views/Home/Index.cshtml]
