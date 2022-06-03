@@ -14,8 +14,13 @@ namespace Educatcion_API.Models
         public string? City { get; set; }   
         public int ZipCode { get; set; }
         public int ClassesId { get; set; }
+        public int ExperienceId { get; set; }
+
         [ForeignKey("ClassesId")]
         public ICollection<Classes> Classes { get; set; } = new List<Classes>();
+        [ForeignKey("ExperienceId")]
+        public ICollection<Category> Experience { get; set; } = new List<Category>();
+
 
     }
 

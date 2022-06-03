@@ -16,6 +16,21 @@ namespace Educatcion_API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
+            modelBuilder.Entity("CategoryTeacher", b =>
+                {
+                    b.Property<int>("ExperienceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ExperienceId", "TeacherId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("CategoryTeacher");
+                });
+
             modelBuilder.Entity("ClassesStudent", b =>
                 {
                     b.Property<int>("ClassesId")
@@ -54,6 +69,9 @@ namespace Educatcion_API.Migrations
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -153,6 +171,9 @@ namespace Educatcion_API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ExperienceId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
@@ -168,6 +189,21 @@ namespace Educatcion_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("CategoryTeacher", b =>
+                {
+                    b.HasOne("Educatcion_API.Models.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("ExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Educatcion_API.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClassesStudent", b =>

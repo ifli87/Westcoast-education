@@ -10,13 +10,28 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Educatcion_API.Migrations
 {
     [DbContext(typeof(ClassesContext))]
-    [Migration("20220531130730_new ")]
-    partial class @new
+    [Migration("20220603074943_nytt1")]
+    partial class nytt1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+
+            modelBuilder.Entity("CategoryTeacher", b =>
+                {
+                    b.Property<int>("ExperienceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ExperienceId", "TeacherId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("CategoryTeacher");
+                });
 
             modelBuilder.Entity("ClassesStudent", b =>
                 {
@@ -56,6 +71,9 @@ namespace Educatcion_API.Migrations
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -134,7 +152,7 @@ namespace Educatcion_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Educatcion_API.Models.Teacher", b =>
@@ -155,6 +173,9 @@ namespace Educatcion_API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ExperienceId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
@@ -169,7 +190,22 @@ namespace Educatcion_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("CategoryTeacher", b =>
+                {
+                    b.HasOne("Educatcion_API.Models.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("ExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Educatcion_API.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClassesStudent", b =>

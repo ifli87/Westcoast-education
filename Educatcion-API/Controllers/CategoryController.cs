@@ -37,7 +37,7 @@ namespace Educatcion_API.Controllers
             return StatusCode (500, " ops något gick fel vid sparande av category");
         }
        
-        [HttpGet("courses")]
+        [HttpGet("classes")]
         public async Task<ActionResult> ListCategorysWithClasses ()
         {
           return Ok (await _categoryRepo.ListCategorysClasses());

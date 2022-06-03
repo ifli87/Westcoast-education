@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace Educatcion_API.ViewModels
 {
     public class PutClassesViewModel
-    {
+    {  
+        [Required]
+        public int CourseNumber { get; set; }
         [Required]
         public string? Title { get; set; }
         [Required]

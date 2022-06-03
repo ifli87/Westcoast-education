@@ -112,10 +112,10 @@ namespace Educatcion_API.Repositories
             {
                 throw new Exception($"Vi kunde inte hitta någon kurs med detta id{id}");
             }
-
+            classes.CourseNumber = model.CourseNumber;
             classes.Title = model.Title;
             classes.Length = model.Length;
-            classes.Description = model.Details;
+            classes.Description = model.Description;
             classes.Details = model.Details;
 
             _context.Classes.Update(classes);
