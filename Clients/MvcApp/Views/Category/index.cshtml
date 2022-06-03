@@ -1,5 +1,5 @@
 
-@model IEnumerable<MvcApp.ViewModels.CategoryWithClassViewModel>
+@model IEnumerable<MvcApp.ViewModels.CategoryWithClassesViewModel>
 @{
     ViewData["Title"] = "Kurser";
 }
@@ -8,8 +8,8 @@
 <section>
     @foreach (var category in Model)
     {
-        <div>
-            <a asp-controller="Classes" asp-action="Details"/>
+        <div class="gallery-card">
+            <a asp-controller="category" asp-action="classes"/>
            <p>
                @category.CategoryName
 

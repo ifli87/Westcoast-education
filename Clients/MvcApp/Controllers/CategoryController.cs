@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using MvcApp.Models;
-using MvcApp.ViewModels;
 
 namespace MvcApp.Controllers
 {
@@ -19,7 +12,7 @@ namespace MvcApp.Controllers
             _config = config;
         }
 
-        [HttpGet()]
+        [HttpGet("")]
         public async Task <IActionResult> Index ()
         {
        try

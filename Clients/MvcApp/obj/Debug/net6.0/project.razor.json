@@ -16333,6 +16333,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\emil_\\source\\repos\\bilar\\Westcoast-education\\Clients\\MvcApp\\Views\\Category\\classes.cshtml",
+      "TargetPath": "Views\\Category\\classes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\emil_\\source\\repos\\bilar\\Westcoast-education\\Clients\\MvcApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"

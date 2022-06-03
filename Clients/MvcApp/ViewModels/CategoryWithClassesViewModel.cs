@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MvcApp.ViewModels
 {
-    public class CategoryWithClassViewModel
+    public class CategoryWithClassesViewModel
     {
         public int Id { get; set; }
        

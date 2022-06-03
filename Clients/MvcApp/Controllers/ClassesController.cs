@@ -1,7 +1,5 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using MvcApp.Models;
-using MvcApp.ViewModels;
 
 namespace MvcApp.Controllers
 {
@@ -15,14 +13,14 @@ namespace MvcApp.Controllers
         }
 
   
-   [HttpGet()]
+        [HttpGet("")]
         public async Task <IActionResult> Details ()
         {
        try
        {
-           var classesService = new ClassesServiceModel(_config);
-           var classes = await classesService.ListAllClasses();
-            return View(classes);
+           var classesServiceWithCategory = new ClassesServiceModel(_config);
+           var category = await classesServiceWithCategory.ListAllClassesWithCategory();
+            return View(category);
        }
        catch (System.Exception)
        {

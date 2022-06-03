@@ -16,15 +16,15 @@ namespace MvcApp.Models
         public ClassesServiceModel(IConfiguration config)
         {
             _config = config;
-            _baseUrl = $"{_config.GetValue<string>("baseUrl")}/category";
+            _baseUrl = $"{_config.GetValue<string>("baseUrl")}";
             _options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
         }
 
        
-
-         public async Task <List<CategoryWithClassViewModel>> ListAllClassesWithCategory()
+        // denna skickar alla kategorinamn i categorymedvymodel
+         public async Task <List<CategoryWithClassesViewModel>> ListAllClassesWithCategory()
         {
-            var url = $"{_baseUrl}";
+            var url = $"{_baseUrl}/category";
             using var http = new HttpClient();
             var response = await http.GetAsync(url);
              if (!response.IsSuccessStatusCode)
@@ -32,13 +32,13 @@ namespace MvcApp.Models
                 throw new Exception("Detta fungerar inte ") ; 
             }
             var result = await response.Content.ReadAsStringAsync();
-            var classesWithCategory = JsonSerializer.Deserialize<List<CategoryWithClassViewModel>>(result, _options);
+            var classesWithCategory = JsonSerializer.Deserialize<List<CategoryWithClassesViewModel>>(result, _options);
 
-            return classesWithCategory ?? new List<CategoryWithClassViewModel>();
+            return classesWithCategory ?? new List<CategoryWithClassesViewModel>();
         }
              public async Task <List<ClassesViewModel>> ListAllClasses()
         {
-            var url = $"{_baseUrl}";
+            var url = $"{_baseUrl}/category/classes";
             using var http = new HttpClient();
             var response = await http.GetAsync(url);
              if (!response.IsSuccessStatusCode)

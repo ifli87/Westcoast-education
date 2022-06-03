@@ -17,3 +17,22 @@ h2 {
 p {
     color: red;
 }
+section {
+   
+    display: flex;
+    
+    gap: 10rem;
+}
+.gallery-card {
+    background-color: beige;
+    border: 1px solid black;
+    width: 25vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    border-radius: 25px 0px 25px 0px;
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.6);
+}
