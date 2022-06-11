@@ -1,0 +1,53 @@
+@model IEnumerable<MvcApp.ViewModels.CategoryWithClassesViewModel>
+
+{
+    ViewData["Title"] = "Våra kurser";
+}
+
+
+<section>
+    @foreach (var category in Model)
+    {
+        <div>
+            
+            <p>
+            @category.CategoryName
+            
+            Här kommer snart info om kurserna 
+            </p> 
+        </div>
+    }
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model MvcApp.ViewModels.CategoryWithClassesViewModel
+@{
+    ViewData["Title"] = "Våra kurser";
+}
+<section>
+    @foreach (var classes in Model.Classes)
+    {
+        <div>
+            
+            <p>
+            @classes.CourseNumber
+            @classes.Title
+            @classes.Length
+            Här kommer snart info om kurserna 
+            </p> 
+        </div>
+    }
+</section>  *@
